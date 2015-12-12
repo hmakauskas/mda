@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Laravel Quickstart - Intermediate</title>
+	<title>Madruga Payment System</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -70,7 +70,10 @@
 		            <li><a href="<?=url('fiscalDocument')?>">Fiscal Documents</a></li>
 		            <li><a href="<?=url('cost')?>">Costs</a></li>
 		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Companies</a></li>		            
+		            <li><a href="#">Companies</a></li>	
+		            <li><a href="<?=url('costStatus')?>">Cost Status</a></li>
+
+		            </ul>		            
 		          </ul>
 		        </li>
 		      </ul>

@@ -43,3 +43,13 @@ Route::get('/cost/{cost}/edit', 'CostController@edit');
 Route::put('/cost', 'CostController@update');
 Route::post('/cost', 'CostController@store');
 Route::delete('/cost/{cost}', 'CostController@destroy');
+
+Route::get('/costStatus', 'CostStatusController@index');
+Route::get('/costStatus/create', 'CostStatusController@create');
+Route::get('/costStatus/{costStatus}/edit', 'CostStatusController@edit');
+Route::put('/costStatus', 'CostStatusController@update');
+Route::post('/costStatus', 'CostStatusController@store');
+Route::delete('/costStatus/{costStatus}', 'CostStatusController@destroy');
+
+
+
