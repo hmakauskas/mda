@@ -9,5 +9,7 @@ class CostStatus extends Model
 
 	protected $fillable = ['status_name'];
 	public $timestamps = false;
+
+
 	
 }

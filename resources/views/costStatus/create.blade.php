@@ -36,6 +36,22 @@
             </div>
         </div>
     </form>
+
+
+    <form action="<?=url('costStatus')?>" method="DELETE" class="form-horizontal">
+        {{ csrf_field() }}
+
+
+        {{ method_field('DELETE') }}
+        <!-- Add Task Button -->
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-plus"></i> Delete Cost Status
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 
 @endsection

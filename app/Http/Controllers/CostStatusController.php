@@ -99,14 +99,17 @@ class CostStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+     public function edit($id)
     {
+
         $costStatuses = \DB::table('cost_statuses')->lists('status_name', 'id');
 
         return view('CostStatus.create', [
             'CostStatus' => $this->CostStatusRepository->getCostStatus($id),
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -115,9 +118,17 @@ class CostStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+
+        $CostStatus = CostStatus::find($request->id);
+
+        $CostStatus->status_name = $request->status_name;
+        
+        $CostStatus->save();
+
+        return redirect('/costStatus');
     }
 
     /**
@@ -126,8 +137,14 @@ class CostStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+ 
     public function destroy($id)
     {
-        //
+        $CostStatus = CostStatus::find($id);
+        $CostStatus->delete();
+
+        return redirect('/costStatus')->with('delete_message', 'Cost Status deleted.');;
     }
+
+
 }

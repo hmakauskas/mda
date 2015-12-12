@@ -17,6 +17,13 @@ class CostStatusRepository
         return Cost::orderBy('id', 'asc')
                     ->get();
     }
+
+    public function getCostStatus($id)
+    {
+        return CostStatus::where('id', $id)
+                    ->orderBy('id', 'asc')
+                    ->get();
+    }
     
 }
 

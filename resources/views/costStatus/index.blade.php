@@ -29,6 +29,8 @@
             {!! Form::open(['method'=>'GET','url'=>'costStatus','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
             <a href="{{ url('costStatus/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
+
+
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search...">
 
@@ -67,10 +69,24 @@
                                     <div>
                                         <a href="/costStatus/{{ $CostStatus->id }}/edit">
                                             {{ $CostStatus->status_name }}
+
                                         </a>
+
+
+
                                     </div>
-                                </td>                                                                 
+
+                                </td>
+                                <td> 
+                                	{!! Form::open(['method'=>'DELETE','url'=>'costStatus/'.$CostStatus->id,'class'=>'pull-right'])  !!}
+
+                                	    {!! Form::submit('Delete this Nerd', array('class' => 'btn btn-warning')) !!}
+					                {!! Form::close() !!}
+
+                                </td>
+
                             </tr>
+
                         @endforeach
                     </tbody>
                 </table>
