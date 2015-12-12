@@ -30,7 +30,10 @@
             <label for="task-name" class="col-sm-3 control-label">Valor</label>
 
             <div class="col-sm-6">
-                <input type="text" name="value" id="fiscalDocument-value" value="{{ $fiscalDocument[0]->value or '' }}" class="form-control">
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" name="value" id="fiscalDocument-value" value="{{ $fiscalDocument[0]->value or '' }}" class="form-control">                  
+                </div>                
             </div>
         </div>
 
