@@ -16,13 +16,13 @@
 
 
 	<!-- Current Tasks -->
-    @if (isset($CostStatuses))
+    @if (isset($MarketingChannels))
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Cost Status
+                Current Marketing Channels
             </div>
 
-            {!! Form::open(['method'=>'GET','url'=>'costStatus','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            {!! Form::open(['method'=>'GET','url'=>'marketingChannel','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
             <a href="{{ url('marketingChannel/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
 
@@ -63,7 +63,7 @@
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="/marketingChannel/{{ $MarketingChanenl->id }}/edit">
+                                        <a href="/marketingChannel/{{ $MarketingChannel->id }}/edit">
                                             {{ $MarketingChannel->channel_name }}
 
                                         </a>

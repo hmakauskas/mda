@@ -31,27 +31,13 @@
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-6">
                 <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Save Cost Status
+                    <i class="fa fa-plus"></i> Save Marketing Channel
                 </button>
             </div>
         </div>
     </form>
 
 
-    <form action="<?=url('marketingChannel')?>" method="DELETE" class="form-horizontal">
-        {{ csrf_field() }}
-
-
-        {{ method_field('DELETE') }}
-        <!-- Add Task Button -->
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Delete Marketing Channel
-                </button>
-            </div>
-        </div>
-    </form>
 </div>
 
 @endsection

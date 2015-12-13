@@ -89,6 +89,7 @@
 		            <li><a href="<?=url('company')?>">Companies</a></li>		            
 		            <li><a href="<?=url('supplier')?>">Suppliers</a></li>
 		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
+		            <li><a href="<?=url('marketingChannel')?>">Marketing Channel</a></li>
 		          </ul>
 		        </li>
 		      </ul>
