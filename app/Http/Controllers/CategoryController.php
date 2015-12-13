@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+use App\Category;
+use App\Repositories\CategoryRepository;
+
 class CategoryController extends Controller
 {
     /**
@@ -14,9 +18,35 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct(CategoryRepository $CategoryRepository)
     {
-        //
+        $this->middleware('auth');
+
+        $this->CategoryRepository = $CategoryRepository;
+    }
+
+
+    public function index(Request $request)
+    {
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+ 
+        
+        if($search){
+
+            $allCategory = Category::whereRaw('category_name = ?', [$search])
+                ->orderBy('id','asc')
+                ->paginate(5);    
+
+        }else{
+
+            $allCategory = Category::orderBy('id', 'asc')->paginate(5);    
+        }
+
+        
+        return view('Category.index', [
+            'Categories' => $allCategory,
+        ]);
     }
 
     /**
@@ -26,7 +56,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('Category.create');
     }
 
     /**
@@ -37,7 +67,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category_name' => 'required|max:255',
+        ]);
+
+        Category::create([
+            'category_name' => $request->category_name,
+        ]);
+
+        return redirect('/category');
     }
 
     /**
@@ -48,7 +86,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Category.index', [
+            'Category' => $this->CategoryRepository->getCategory($id),
+        ]);
     }
 
     /**
@@ -57,10 +97,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+     public function edit($id)
     {
-        //
+
+       
+        return view('Category.create', [
+            'Category' => $this->CategoryRepository->getCategory($id),
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,9 +115,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+
+        $Category = Category::find($request->id);
+
+        $Category->category_name = $request->category_name;
+        
+        $Category->save();
+
+        return redirect('/category');
     }
 
     /**
@@ -80,8 +134,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+ 
     public function destroy($id)
     {
-        //
+        $Category = Category::find($id);
+        $Category->delete();
+
+        return redirect('/category')->with('delete_message', 'Category deleted.');;
     }
+
+
 }
