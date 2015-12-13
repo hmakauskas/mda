@@ -70,7 +70,7 @@
                                     <div>{{ $fiscalDocument->created_at }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $fiscalDocument->fk_supplier_branch }}</div>
+                                    <div>{{ $fiscalDocument->supplier_branch_id }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach

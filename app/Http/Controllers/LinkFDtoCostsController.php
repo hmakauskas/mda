@@ -52,25 +52,25 @@ class LinkFDtoCostsController extends Controller
         $companies = \DB::table('companies')->lists('store_name', 'id');
 
 
-        $fk_supplier_branch = \Request::get('fk_supplier_branch');
-        $fk_channel = \Request::get('fk_channel');
-        $fk_company = \Request::get('fk_company');
+        $supplier_branch_id = \Request::get('supplier_branch_id');
+        $marketing_channel_id = \Request::get('marketing_channel_id');
+        $company_id = \Request::get('company_id');
         $from = \Request::get('from').' 00:00:00';
         $to = \Request::get('to').' 23:59:59';
 
-        if($fk_supplier_branch && $fk_channel && $fk_company){
+        if($supplier_branch_id && $marketing_channel_id && $company_id){
 
             $allFiscalDocuments = FiscalDocument::whereBetween('created_at', [$from, $to])
-                ->Where('fk_supplier_branch', $fk_supplier_branch)
-                ->Where('fk_company', $fk_company)
+                ->Where('supplier_branch_id', $supplier_branch_id)
+                ->Where('company_id', $company_id)
                 ->orderBy('id', 'desc')
                 ->paginate(5); 
 
 
              $allCost = Cost::whereBetween('created_at', [$from, $to])
-                ->Where('fk_supplier', 1)
-                ->Where('fk_channel', $fk_channel)
-                ->Where('fk_company', $fk_company)
+                ->Where('supplier_id', 1)
+                ->Where('marketing_channel_id', $marketing_channel_id)
+                ->Where('company_id', $company_id)
                 ->orderBy('id', 'desc')
                 ->get();
 
@@ -112,7 +112,7 @@ class LinkFDtoCostsController extends Controller
         foreach ($request->cost_ids as $cost_id) {
             
             $cost = Cost::find($cost_id);
-            $cost->fk_fiscal_document = $request->fiscalDocument_id;            
+            $cost->fiscal_document_id = $request->fiscalDocument_id;            
             $cost->save();
         }
 

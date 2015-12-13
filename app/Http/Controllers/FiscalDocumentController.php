@@ -94,14 +94,14 @@ class FiscalDocumentController extends Controller
         $ficalDocument = FiscalDocument::create([
             'fiscal_document_number' => $request->fiscal_document_number,
             'value' => $request->value,
-            'fk_supplier_branch' => $request->fk_supplier_branch,
-            'fk_currency' => $request->fk_currency,
-            'fk_company' => $request->fk_company,
-            'fk_fiscal_document_status' => $request->fk_fiscal_document_status,
+            'supplier_branch_id' => $request->supplier_branch_id,
+            'currency_id' => $request->currency_id,
+            'company_id' => $request->company_id,
+            'fiscal_document_status_id' => $request->fiscal_document_status_id,
             'filename' => $fileName,
         ]);        
 
-        return redirect('/fiscalDocument')->with('message', 'Document added!');;
+        return redirect('/fiscalDocument')->with('message', 'Document added!');
     }
 
     /**
@@ -145,22 +145,24 @@ class FiscalDocumentController extends Controller
     {
         $fileName = null;
 
-        if ($request->file('file')->isValid()) {
+        if ($request->file('file')) {
+            if ($request->file('file')->isValid()) {
 
-            $fileName = md5(uniqid(rand(), true)) . '.' . $request->file('file')->getClientOriginalExtension();           
-            $request->file('file')->move(
-                base_path() . '/public/files/fiscal_documents/', $fileName
-            );
+                $fileName = md5(uniqid(rand(), true)) . '.' . $request->file('file')->getClientOriginalExtension();           
+                $request->file('file')->move(
+                    base_path() . '/public/files/fiscal_documents/', $fileName
+                );
+            }
         }
 
         $fiscalDocument = FiscalDocument::find($request->id);
 
         $fiscalDocument->fiscal_document_number = $request->fiscal_document_number;
         $fiscalDocument->value = $request->value;
-        $fiscalDocument->fk_supplier_branch = $request->fk_supplier_branch;
-        $fiscalDocument->fk_currency = $request->fk_currency;
-        $fiscalDocument->fk_company = $request->fk_company;
-        $fiscalDocument->fk_fiscal_document_status = $request->fk_fiscal_document_status;
+        $fiscalDocument->supplier_branch_id = $request->supplier_branch_id;
+        $fiscalDocument->currency_id = $request->currency_id;
+        $fiscalDocument->company_id = $request->company_id;
+        $fiscalDocument->fiscal_document_status_id = $request->fiscal_document_status_id;
         if($fileName){
           if($fiscalDocument->filename) File::delete(base_path() . '/public/files/fiscal_documents/' . $fiscalDocument->filename);
           $fiscalDocument->filename = $fileName;  

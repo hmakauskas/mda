@@ -3,22 +3,17 @@
 @section('content')
 
 <!-- Current Tasks -->
-    @if (isset($costs))
+    @if (isset($companies))
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Costs
+                Current Companies
             </div>
 
-            {!! Form::open(['method'=>'GET','url'=>'cost','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-            <a href="{{ url('cost/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
+            {!! Form::open(['method'=>'GET','url'=>'company','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            <a href="{{ url('company/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search...">
-
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
+                <input type="text" class="form-control" name="search" placeholder="Search...">
 
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">Search</button>
@@ -32,7 +27,7 @@
 
                     <!-- Table Headings -->
                     <thead>
-                        <th>Cost</th>
+                        <th>Company</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
@@ -42,35 +37,35 @@
                     <tbody>
                             <tr>
                                 <td class="table-text">
-                                    <div>Short Description</div>
+                                    <div>Store Name</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Value</div>
+                                    <div>Billing Country</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Manamagent Date</div>
+                                    <div>Legal Entity name</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier</div>
+                                    <div>Legal Entity tax register</div>
                                 </td> 
                             </tr>
-                        @foreach ($costs as $cost)
+                        @foreach ($companies as $company)
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="/laravel5/public/cost/{{ $cost->id }}/edit">
-                                            {{ $cost->short_description }}
+                                        <a href="{{ url('company') .'/'. $company->id }}/edit">
+                                            {{ $company->store_name }}
                                         </a>
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->value }}</div>
+                                    <div>{{ $company->billing_country }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->date_mgr }}</div>
+                                    <div>{{ $company->legal_entity_name }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->supplier_id }}</div>
+                                    <div>{{ $company->legal_entity_tax_register }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach
@@ -79,7 +74,7 @@
             </div>
         </div>
 
-        <?php echo $costs->render(); ?>
+        <?php echo $companies->render(); ?>
 
     @endif
 

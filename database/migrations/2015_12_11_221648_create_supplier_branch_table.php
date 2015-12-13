@@ -12,7 +12,14 @@ class CreateSupplierBranchTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('supplier_branches', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('fiscal_id');
+            $table->string('country');
+            $table->bigInteger('supplier_id');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -18,16 +18,16 @@ class CreateCostTable extends Migration
             $table->dateTime('date_mgr');
             $table->dateTime('date_acc');
             $table->string('short_description', 256);
-            $table->text('desciption');
+            $table->text('description')->nullable();
             $table->float('value');
             $table->timestamps();
-            $table->bigInteger('fk_fiscal_document');
-            $table->bigInteger('fk_supplier');
-            $table->bigInteger('fk_currency');
-            $table->bigInteger('fk_company');
-            $table->bigInteger('fk_channel');
-            $table->bigInteger('fk_category');
-            $table->bigInteger('fk_cost_status');
+            $table->bigInteger('fiscal_document_id')->nullable();;
+            $table->bigInteger('supplier_id');
+            $table->bigInteger('currency_id');
+            $table->bigInteger('company_id');
+            $table->bigInteger('marketing_channel_id');
+            $table->bigInteger('category_id');
+            $table->bigInteger('cost_status_id');
             
         });
     }

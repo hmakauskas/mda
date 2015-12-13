@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Company;
+use App\Supplier;
 
-class CompanyController extends Controller
+class SupplierController extends Controller
 {
-    
     /**
     * Create a new controller instance.
     *
@@ -32,18 +32,18 @@ class CompanyController extends Controller
  
         if($search){
 
-            $allCompanies = Company::whereRaw('store_name = ?', [$search])
+            $allsuppliers = Supplier::whereRaw('supplier_name = ?', [$search])
                 ->orderBy('id', 'desc')
                 ->paginate(5);    
 
         }else{
 
-            $allCompanies = Company::orderBy('id', 'desc')->paginate(5);    
+            $allsuppliers = Supplier::orderBy('id', 'desc')->paginate(5);    
         }
         
         
-        return view('company.index', [
-            'companies' => $allCompanies,
+        return view('supplier.index', [
+            'suppliers' => $allsuppliers,
         ]);
     }
 
@@ -54,7 +54,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        return view('supplier.create');
     }
 
     /**
@@ -66,17 +66,14 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'store_name' => 'required|max:255',
+            'supplier_name' => 'required|max:255',
         ]);
 
-        $company = Company::create([
-            'store_name' => $request->store_name,
-            'billing_country' => $request->billing_country,
-            'legal_entity_name' => $request->legal_entity_name,
-            'legal_entity_tax_register' => $request->legal_entity_tax_register,
+        $supplier = Supplier::create([
+            'supplier_name' => $request->supplier_name,            
         ]);        
 
-        return redirect('/company')->with('message', 'Company added!');
+        return redirect('/supplier')->with('message', 'Supplier added!');
     }
 
     /**
@@ -87,8 +84,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        return view('company.index', [
-            'company' => Company::find($id),
+        return view('supplier.index', [
+            'supplier' => Supplier::find($id),
         ]);
     }
 
@@ -100,8 +97,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        return view('company.create', [
-            'company' => Company::find($id),
+        return view('supplier.create', [
+            'supplier' => Supplier::find($id),
         ]);
     }
 
@@ -114,16 +111,13 @@ class CompanyController extends Controller
      */
     public function update(Request $request)
     {
-        $company = Company::find($request->id);
+        $supplier = Supplier::find($request->id);
 
-        $company->store_name = $request->store_name;
-        $company->billing_country = $request->billing_country;
-        $company->legal_entity_name = $request->legal_entity_name;
-        $company->legal_entity_tax_register = $request->legal_entity_tax_register;
+        $supplier->supplier_name = $request->supplier_name;
         
-        $company->save();
+        $supplier->save();
 
-        return redirect('/company');
+        return redirect('/supplier');
     }
 
     /**
