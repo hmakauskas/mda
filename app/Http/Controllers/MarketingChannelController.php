@@ -19,16 +19,34 @@ class MarketingChannelController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(CostStatusRepository $CostStatusRepository)
+    public function __construct(MarketingChannelRepository $MarketingChannelRepository)
     {
         $this->middleware('auth');
 
-        $this->CostStatusRepository = $CostStatusRepository;
+        $this->MarketingChannelRepository = $MarketingChannelRepository;
     }
 
     public function index()
     {
         //
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+ 
+        
+        if($search){
+
+            $allMarketingChannel = MarketingChannel::whereRaw('channel_name = ?', [$search])
+                ->orderBy('id','asc')
+                ->paginate(5);    
+
+        }else{
+
+            $allMarketingChannel = MarketingChannel::orderBy('id', 'asc')->paginate(5);    
+        }
+
+        
+        return view('MarketingChannel.index', [
+            'MarketingChannels' => $allMarketingChannel,
+        ]);
     }
 
     /**
@@ -39,7 +57,7 @@ class MarketingChannelController extends Controller
     public function create()
     {
         //
-        return view('MarketingChannelController.create');
+        return view('MarketingChannel.create');
     }
 
     /**
@@ -55,7 +73,7 @@ class MarketingChannelController extends Controller
             'channel_name' => 'required|max:255',
         ]);
 
-        CostStatus::create([
+        MarketingChannel::create([
             'channel_name' => $request->channel_name,
         ]);
 
@@ -86,7 +104,11 @@ class MarketingChannelController extends Controller
     public function edit($id)
     {
         //
-        $marketingChannels = \DB::table('marketing_channels')->lists('channel_name', 'id');
+
+        //return view('MarketingChannel.create', [
+        //    'MarketingChannel' => $this->MarketingChannelRepository->getMarketingChannel($id),
+        //]);
+
 
         return view('MarketingChannel.create', [
             'MarketingChannel' => $this->MarketingChannelRepository->getMarketingChannel($id),
@@ -100,7 +122,7 @@ class MarketingChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
 

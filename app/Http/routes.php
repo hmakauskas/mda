@@ -59,3 +59,11 @@ Route::delete('/costStatus/{costStatus}', 'CostStatusController@destroy');
 
 Route::get('/joincosts', 'LinkFDtoCostsController@index');
 Route::post('/joincosts', 'LinkFDtoCostsController@store');
+
+Route::get('/marketingChannel', 'MarketingChannelController@index');
+Route::get('/marketingChannel/create', 'MarketingChannelController@create');
+Route::get('/marketingChannel/{marketingChannel}/edit', 'MarketingChannelController@edit');
+Route::put('/marketingChannel', 'MarketingChannelController@update');
+Route::post('/marketingChannel', 'MarketingChannelController@store');
+Route::delete('/marketingChannel/{marketingChannel}', 'MarketingChannelController@destroy');
+
