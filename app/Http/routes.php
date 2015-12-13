@@ -74,3 +74,10 @@ Route::put('/category', 'CategoryController@update');
 Route::post('/category', 'CategoryController@store');
 Route::delete('/category/{category}', 'CategoryController@destroy');
 
+Route::get('/fiscalDocumentStatus', 'FiscalDocumentStatusController@index');
+Route::get('/fiscalDocumentStatus/create', 'FiscalDocumentStatusController@create');
+Route::get('/fiscalDocumentStatus/{fiscalDocumentStatus}/edit', 'FiscalDocumentStatusController@edit');
+Route::put('/fiscalDocumentStatus', 'FiscalDocumentStatusController@update');
+Route::post('/fiscalDocumentStatus', 'FiscalDocumentStatusController@store');
+Route::delete('/fiscalDocumentStatus/{fiscalDocumentStatus}', 'FiscalDocumentStatusController@destroy');
+

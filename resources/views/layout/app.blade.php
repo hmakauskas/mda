@@ -90,6 +90,7 @@
 		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
 		            <li><a href="<?=url('marketingChannel')?>">Marketing Channel</a></li>
 		            <li><a href="<?=url('category')?>">Category</a></li>
+		            <li><a href="<?=url('fiscalDocumentStatus')?>">Fiscal Document Status</a></li>
 		          </ul>
 		        </li>
 		      </ul>
