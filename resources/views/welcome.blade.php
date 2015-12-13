@@ -9,7 +9,9 @@
 				</div>
 
 				<div class="panel-body">
-					{{ trans('messages.welcome') }}					
+					You can store fiscal document & costs here! Please register or login.
+					<br>
+					<i>Você não sabe o que é sentido figurado? Na escola não te dão aulas de geometria?  Seu Madruga - Chaves </i>
 				</div>
 			</div>
 		</div>
