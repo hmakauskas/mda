@@ -67,3 +67,10 @@ Route::put('/marketingChannel', 'MarketingChannelController@update');
 Route::post('/marketingChannel', 'MarketingChannelController@store');
 Route::delete('/marketingChannel/{marketingChannel}', 'MarketingChannelController@destroy');
 
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/create', 'CategoryController@create');
+Route::get('/category/{category}/edit', 'CategoryController@edit');
+Route::put('/category', 'CategoryController@update');
+Route::post('/category', 'CategoryController@store');
+Route::delete('/category/{category}', 'CategoryController@destroy');
+
