@@ -3,22 +3,17 @@
 @section('content')
 
 <!-- Current Tasks -->
-    @if (isset($costs))
+    @if (isset($suppliers))
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Costs
+                Current Suppliers
             </div>
 
-            {!! Form::open(['method'=>'GET','url'=>'cost','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-            <a href="{{ url('cost/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
+            {!! Form::open(['method'=>'GET','url'=>'supplier','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            <a href="{{ url('supplier/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search...">
-
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
+                <input type="text" class="form-control" name="search" placeholder="Search...">
 
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">Search</button>
@@ -32,7 +27,7 @@
 
                     <!-- Table Headings -->
                     <thead>
-                        <th>Cost</th>
+                        <th>Supplier</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
@@ -42,36 +37,36 @@
                     <tbody>
                             <tr>
                                 <td class="table-text">
-                                    <div>Short Description</div>
+                                    <div>Supplier Name</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Value</div>
+                                    <div>&nbsp;</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Manamagent Date</div>
+                                    <div>&nbsp;</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier</div>
-                                </td> 
+                                    <div>&nbsp;</div>
+                                </td>                                
                             </tr>
-                        @foreach ($costs as $cost)
+                        @foreach ($suppliers as $supplier)
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="/laravel5/public/cost/{{ $cost->id }}/edit">
-                                            {{ $cost->short_description }}
+                                        <a href="{{ url('supplier') .'/'. $supplier->id }}/edit">
+                                            {{ $supplier->supplier_name }}
                                         </a>
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->value }}</div>
+                                    <div>&nbsp;</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->date_mgr }}</div>
+                                    <div>&nbsp;</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->supplier_id }}</div>
-                                </td>                                                                        
+                                    <div>&nbsp;</div>
+                                </td>                                  
                             </tr>
                         @endforeach
                     </tbody>
@@ -79,7 +74,7 @@
             </div>
         </div>
 
-        <?php echo $costs->render(); ?>
+        <?php echo $suppliers->render(); ?>
 
     @endif
 

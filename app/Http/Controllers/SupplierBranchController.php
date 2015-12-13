@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Company;
+use App\SupplierBranch;
+use App\Supplier;
 
-class CompanyController extends Controller
+class SupplierBranchController extends Controller
 {
     
     /**
@@ -32,18 +34,17 @@ class CompanyController extends Controller
  
         if($search){
 
-            $allCompanies = Company::whereRaw('store_name = ?', [$search])
+            $allSuppliers = Supplier::whereRaw('supplier_name = ?', [$search])
                 ->orderBy('id', 'desc')
                 ->paginate(5);    
 
         }else{
 
-            $allCompanies = Company::orderBy('id', 'desc')->paginate(5);    
+            $allSuppliers = Supplier::orderBy('id', 'desc')->paginate(5);            
         }
-        
-        
-        return view('company.index', [
-            'companies' => $allCompanies,
+
+        return view('supplierBranch.index', [
+            'suppliers' => $allSuppliers,
         ]);
     }
 
@@ -53,8 +54,12 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('company.create');
+    {   
+        $suppliers = \DB::table('suppliers')->lists('supplier_name', 'id');
+
+        return view('supplierBranch.create', [
+            'suppliers' => $suppliers,
+        ]);
     }
 
     /**
@@ -66,17 +71,16 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'store_name' => 'required|max:255',
+            'fiscal_id' => 'required|max:255',
         ]);
 
-        $company = Company::create([
-            'store_name' => $request->store_name,
-            'billing_country' => $request->billing_country,
-            'legal_entity_name' => $request->legal_entity_name,
-            'legal_entity_tax_register' => $request->legal_entity_tax_register,
+        $supplierBranch = SupplierBranch::create([
+            'supplier_id' => $request->supplier_id,
+            'fiscal_id' => $request->fiscal_id,
+            'country' => $request->country,
         ]);        
 
-        return redirect('/company')->with('message', 'Company added!');
+        return redirect('/supplierbranch')->with('message', 'Company added!');
     }
 
     /**
@@ -87,8 +91,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        return view('company.index', [
-            'company' => Company::find($id),
+        return view('supplierBranch.index', [
+            'supplierBranch' => SupplierBranch::find($id),
         ]);
     }
 
@@ -99,9 +103,12 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return view('company.create', [
-            'company' => Company::find($id),
+    {   
+        $suppliers = \DB::table('suppliers')->lists('supplier_name', 'id');
+
+        return view('supplierBranch.create', [
+            'supplierBranch' => SupplierBranch::find($id),
+            'suppliers' => $suppliers,
         ]);
     }
 
@@ -114,16 +121,15 @@ class CompanyController extends Controller
      */
     public function update(Request $request)
     {
-        $company = Company::find($request->id);
+        $supplierBranch = SupplierBranch::find($request->id);
 
-        $company->store_name = $request->store_name;
-        $company->billing_country = $request->billing_country;
-        $company->legal_entity_name = $request->legal_entity_name;
-        $company->legal_entity_tax_register = $request->legal_entity_tax_register;
+        $supplierBranch->supplier_id = $request->supplier_id;
+        $supplierBranch->fiscal_id = $request->fiscal_id;
+        $supplierBranch->country = $request->country;
         
-        $company->save();
+        $supplierBranch->save();
 
-        return redirect('/company');
+        return redirect('/supplierbranch');
     }
 
     /**

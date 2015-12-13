@@ -90,13 +90,13 @@ class CostController extends Controller
             'short_description' => $request->short_description,
             'description' => $request->description,
             'value' => $request->value,
-            'fk_fiscal_document' => $request->fk_fiscal_document,
-            'fk_supplier' => $request->fk_supplier,
-            'fk_currency' => $request->fk_currency,
-            'fk_company' => $request->fk_company,
-            'fk_channel' => $request->fk_channel,
-            'fk_category' => $request->fk_category,
-            'fk_cost_status' => $request->fk_cost_status,
+            'fiscal_document_id' => $request->fiscal_document_id,
+            'supplier_id' => $request->supplier_id,
+            'currency_id' => $request->currency_id,
+            'company_id' => $request->company_id,
+            'marketing_channel_id' => $request->marketing_channel_id,
+            'category_id' => $request->category_id,
+            'cost_status_id' => $request->cost_status_id,
 
         ]);
 
@@ -153,12 +153,12 @@ class CostController extends Controller
         $cost->short_description = $request->short_description;
         $cost->description = $request->description;
         $cost->value = $request->value;
-        $cost->fk_supplier = $request->fk_supplier;
-        $cost->fk_currency = $request->fk_currency;
-        $cost->fk_company = $request->fk_company;
-        $cost->fk_channel = $request->fk_channel;
-        $cost->fk_category = $request->fk_category;
-        $cost->fk_cost_status = $request->fk_cost_status;
+        $cost->supplier_id = $request->supplier_id;
+        $cost->currency_id = $request->currency_id;
+        $cost->company_id = $request->company_id;
+        $cost->marketing_channel_id = $request->marketing_channel_id;
+        $cost->category_id = $request->category_id;
+        $cost->cost_status_id = $request->cost_status_id;
 
         $cost->save();
 

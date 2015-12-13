@@ -14,7 +14,7 @@
                 {!! Form::open(['method'=>'GET','url'=>'joincosts','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
                     {!! 
                         Form::select(   
-                            'fk_supplier_branch', 
+                            'supplier_branch_id', 
                             (['0' => 'Select a Supplier Branch'] + $sbranches), 
                             null,  
                             ['class' => 'form-control']
@@ -23,7 +23,7 @@
 
                     {!! 
                         Form::select(   
-                            'fk_channel', 
+                            'marketing_channel_id', 
                             (['0' => 'Select a Channel'] + $channels), 
                             null,  
                             ['class' => 'form-control']
@@ -32,9 +32,9 @@
 
                     {!! 
                         Form::select(   
-                            'fk_company', 
+                            'company_id', 
                             (['0' => 'Select a Company'] + $companies), 
-                            (isset($cost->fk_company) ? $cost->fk_company : null),  
+                            (isset($cost->company_id) ? $cost->company_id : null),  
                             ['class' => 'form-control']
                         ) 
                     !!}
@@ -110,7 +110,7 @@
                                 <div>{{ $fiscalDocument->created_at }}</div>
                             </td>
                             <td class="table-text">
-                                <div>{{ $fiscalDocument->fk_supplier_branch }}</div>
+                                <div>{{ $fiscalDocument->supplier_branch_id }}</div>
                             </td>                                                                        
                         </tr>
                     @endforeach
@@ -160,7 +160,7 @@
                                     <div>{{ $cost->date_mgr }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->fk_supplier }}</div>
+                                    <div>{{ $cost->supplier_id }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach

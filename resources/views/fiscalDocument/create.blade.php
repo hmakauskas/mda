@@ -45,7 +45,7 @@
             <label for="task-name" class="col-sm-3 control-label">Branch</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_supplier_branch" value="{{ $fiscalDocument->fk_supplier_branch or '' }}" id="fiscalDocument-fk_supplier_branch" class="form-control">
+                <input type="text" name="supplier_branch_id" value="{{ $fiscalDocument->supplier_branch_id or '' }}" id="fiscalDocument-supplier_branch_id" class="form-control">
             </div>
         </div>
 
@@ -53,7 +53,7 @@
             <label for="task-name" class="col-sm-3 control-label">Currency</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_currency" value="{{ $fiscalDocument->fk_currency or '' }}" id="fiscalDocument-fk_currency" class="form-control">
+                <input type="text" name="currency_id" value="{{ $fiscalDocument->currency_id or '' }}" id="fiscalDocument-currency_id" class="form-control">
             </div>
         </div>
 
@@ -62,9 +62,9 @@
             <div class="col-sm-6">
                 {!! 
                     Form::select(   
-                        'fk_company', 
+                        'company_id', 
                         (['0' => 'Select a Company'] + $companies), 
-                        (isset($fiscalDocument->fk_company) ? $fiscalDocument->fk_company : null), 
+                        (isset($fiscalDocument->company_id) ? $fiscalDocument->company_id : null), 
                         ['class' => 'form-control']
                     ) 
                 !!}
@@ -75,7 +75,7 @@
             <label for="task-name" class="col-sm-3 control-label">Status</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_fiscal_document_status" value="{{ $fiscalDocument->fk_fiscal_document_status or '' }}" id="fiscalDocument-fk_fiscal_document_status" class="form-control">
+                <input type="text" name="fiscal_document_status_id" value="{{ $fiscalDocument->fiscal_document_status_id or '' }}" id="fiscalDocument-fiscal_document_status_id" class="form-control">
             </div>
         </div>
 

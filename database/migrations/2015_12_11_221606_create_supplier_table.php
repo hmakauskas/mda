@@ -12,7 +12,12 @@ class CreateSupplierTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('suppliers', function(Blueprint $table)
+        {
+            $table->increments('id');
+            $table->string('supplier_name', 256);
+            $table->timestamps();
+        });
     }
 
     /**

@@ -31,7 +31,7 @@
 
                 <div class="col-sm-6">
                     <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" name="date_mgr" value="{{ $cost->short_description or '' }}" id="datepicker" placeholder="2016-01-01">
+                    <input type="text" class="form-control" name="date_mgr" value="{{ $cost->date_mgr or '' }}" id="datepicker" placeholder="2016-01-01">
 
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar">
@@ -46,7 +46,7 @@
 
                 <div class="col-sm-6">
                     <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" name="date_acc" value="{{ $cost->short_description or '' }}" id="datepicker2" placeholder="2016-01-01">
+                    <input type="text" class="form-control" name="date_acc" value="{{ $cost->date_acc or '' }}" id="datepicker2" placeholder="2016-01-01">
 
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar">
@@ -62,9 +62,9 @@
             <div class="col-sm-2">
                 {!! 
                     Form::select(   
-                        'fk_currency', 
+                        'currency_id', 
                         (['0' => 'Currency'] + $currencies), 
-                        (isset($cost->fk_currency) ? $cost->fk_currency : null), 
+                        (isset($cost->currency_id) ? $cost->currency_id : null), 
                         ['class' => 'form-control']
                     ) 
                 !!}
@@ -82,7 +82,7 @@
             <label for="task-name" class="col-sm-3 control-label">Supplier</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_supplier" value="{{ $cost->fk_supplier or '' }}" id="cost-fk_supplier" class="form-control">
+                <input type="text" name="supplier_id" value="{{ $cost->supplier_id or '' }}" id="cost-supplier_id" class="form-control">
             </div>
         </div>        
 
@@ -91,9 +91,9 @@
             <div class="col-sm-6">
                 {!! 
                     Form::select(   
-                        'fk_company', 
+                        'company_id', 
                         (['0' => 'Select a Company'] + $companies), 
-                        (isset($cost->fk_company) ? $cost->fk_company : null),  
+                        (isset($cost->company_id) ? $cost->company_id : null),  
                         ['class' => 'form-control']
                     ) 
                 !!}
@@ -104,7 +104,7 @@
             <label for="task-name" class="col-sm-3 control-label">Marketing Channel</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_channel" value="{{ $cost->fk_channel or '' }}" id="cost-fk_channel" class="form-control">
+                <input type="text" name="marketing_channel_id" value="{{ $cost->marketing_channel_id or '' }}" id="cost-marketing_channel_id" class="form-control">
             </div>
         </div>
 
@@ -112,7 +112,7 @@
             <label for="task-name" class="col-sm-3 control-label">Category</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_category" value="{{ $cost->fk_category or '' }}" id="cost-fk_category" class="form-control">
+                <input type="text" name="category_id" value="{{ $cost->category_id or '' }}" id="cost-category_id" class="form-control">
             </div>
         </div>
 
@@ -120,7 +120,7 @@
             <label for="task-name" class="col-sm-3 control-label">Status</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fk_cost_status" value="{{ $cost->fk_cost_status or '' }}" id="cost-fk_cost_status" class="form-control">
+                <input type="text" name="cost_status_id" value="{{ $cost->cost_status_id or '' }}" id="cost-cost_status_id" class="form-control">
             </div>
         </div>
 
