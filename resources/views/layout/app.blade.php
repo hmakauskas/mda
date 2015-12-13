@@ -87,6 +87,7 @@
 		            <li><a href="<?=url('joincosts')?>">Add costs to a Fiscal Document</a></li>
 		            <li role="separator" class="divider"></li>
 		            <li><a href="#">Companies</a></li>		            
+		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
 		          </ul>
 		        </li>
 		      </ul>

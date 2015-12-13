@@ -7,19 +7,7 @@
     <!-- Display Validation Errors -->
     @include('common.errors')
 
-    <center>
-    	<h1>Cost Status - Actions</h1>
-    <div class="btn-group" role="group" aria-label="Actions">
-	  <button type="button" class="btn btn-default"><a href="<?=url('costStatus/create')?>">Add</a></button>
-	  <button type="button" class="btn btn-default">Edit</button>
-	  <button type="button" class="btn btn-default">Remove</button>
-	</div>
-	</center>
-
-
-
-
-	<!-- Current Tasks -->
+   <!-- Current Tasks -->
     @if (isset($CostStatuses))
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -32,12 +20,7 @@
 
 
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search...">
-
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
+                <input type="text" class="form-control" name="search" placeholder="Search...">
 
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default">Search</button>
@@ -67,22 +50,17 @@
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="/costStatus/{{ $CostStatus->id }}/edit">
+                                        <a href="{{ url('costStatus').'/'.$CostStatus->id }}/edit">
                                             {{ $CostStatus->status_name }}
 
                                         </a>
-
-
-
                                     </div>
-
                                 </td>
                                 <td> 
-                                	{!! Form::open(['method'=>'DELETE','url'=>'costStatus/'.$CostStatus->id,'class'=>'pull-right'])  !!}
+                                	{!! Form::open(['method'=>'DELETE','url'=>url('costStatus').'/'.$CostStatus->id,'class'=>'pull-right'])  !!}
 
-                                	    {!! Form::submit('Delete this Nerd', array('class' => 'btn btn-warning')) !!}
+                                	    {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
 					                {!! Form::close() !!}
-
                                 </td>
 
                             </tr>
