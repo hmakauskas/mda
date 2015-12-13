@@ -11,6 +11,21 @@
 |
 */
 
+Route::get('/', function () {   
+
+	if(\Request::get('language')){
+		$this->app->setLocale(\Request::get('language'));
+		return response()->view('welcome')->withCookie(cookie()->forever('language', \Request::get('language')));
+	}
+	else{
+		return view('welcome');	
+	}
+});
+
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 // Authentication Routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -21,21 +36,12 @@ Route::get('/loginGoogle', 'GoogleLoginController@loginWithGoogle');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
-    return view('welcome');
-});
-
 Route::get('/fiscalDocument', 'fiscalDocumentController@index');
 Route::get('/fiscalDocument/create', 'fiscalDocumentController@create');
 Route::get('/fiscalDocument/{fd}/edit', 'fiscalDocumentController@edit');
 Route::put('/fiscalDocument', 'fiscalDocumentController@update');
 Route::post('/fiscalDocument', 'fiscalDocumentController@store');
 Route::delete('/fiscalDocument/{fiscalDocument}', 'fiscalDocumentController@destroy');
-
 
 Route::get('/cost', 'CostController@index');
 Route::get('/cost/create', 'CostController@create');
@@ -51,5 +57,5 @@ Route::put('/costStatus', 'CostStatusController@update');
 Route::post('/costStatus', 'CostStatusController@store');
 Route::delete('/costStatus/{costStatus}', 'CostStatusController@destroy');
 
-
-
+Route::get('/joincosts', 'LinkFDtoCostsController@index');
+Route::post('/joincosts', 'LinkFDtoCostsController@store');

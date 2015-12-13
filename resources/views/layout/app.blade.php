@@ -5,15 +5,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Madruga Payment System</title>
+	<title>Laravel Quickstart - Intermediate</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
 
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="<?=url('/')?>/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?=url('/')?>/favicon.ico" type="image/x-icon">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -21,8 +21,7 @@
 
 	<style>
 		body {
-			font-family: 'Raleway';
-			margin-top: 25px;
+			font-family: 'Raleway';			
 		}
 
 		.fa-btn {
@@ -42,12 +41,24 @@
 </head>
 
 <body>
-	<div class="container">
+
+	<div style="margin-left: auto; width: 180px; padding-bottom: 5px;">
+  		<a href="{{ url('/') .'/?language=pt'}}">
+  			<img src="<?=url('/')?>/images/brasil.jpg"/>
+  		</a>
+  		<a href="{{ url('/') .'/?language=en'}}">
+  			<img src="<?=url('/')?>/images/eua.png"/>
+  		</a>
+  		<a href="{{ url('/') .'/?language=es'}}">
+  			<img src="<?=url('/')?>/images/espanha.gif"/>
+  		</a>
+  	</div>
+
+	<div class="container">		
 		
 		<nav class="navbar navbar-default">
 		  
 		  <div class="container-fluid">
-
 
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -73,10 +84,9 @@
 		            <li><a href="<?=url('fiscalDocument')?>">Fiscal Documents</a></li>
 		            <li><a href="<?=url('cost')?>">Costs</a></li>
 		            <li role="separator" class="divider"></li>
-		            <li><a href="#">Companies</a></li>	
-		            <li><a href="<?=url('costStatus')?>">Cost Status</a></li>
-
-		            </ul>		            
+		            <li><a href="<?=url('joincosts')?>">Add costs to a Fiscal Document</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Companies</a></li>		            
 		          </ul>
 		        </li>
 		      </ul>
@@ -103,6 +113,30 @@
 <script>
 	$(function() {
 		$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+	});
+
+	$(function() {
+		$( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+	});
+	$(function() {
+		$( "#from" ).datepicker({
+			defaultDate: "-1m",
+			changeMonth: true,
+			numberOfMonths: 2,
+			dateFormat: 'yy-mm-dd',
+			onClose: function( selectedDate ) {
+				$( "#to" ).datepicker( "option", "minDate", selectedDate );
+			}
+		});
+		$( "#to" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			numberOfMonths: 2,
+			dateFormat: 'yy-mm-dd',
+			onClose: function( selectedDate ) {
+				$( "#from" ).datepicker( "option", "maxDate", selectedDate );
+			}
+		});
 	});
 </script>
 

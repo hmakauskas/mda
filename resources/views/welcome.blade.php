@@ -9,7 +9,7 @@
 				</div>
 
 				<div class="panel-body">
-					You can store fiscal document & costs here! Please register or login.
+					{{ trans('messages.welcome') }}					
 				</div>
 			</div>
 		</div>
