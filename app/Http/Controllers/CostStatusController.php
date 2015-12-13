@@ -86,8 +86,6 @@ class CostStatusController extends Controller
      */
     public function show($id)
     {
-        //
-
         return view('CostStatus.index', [
             'CostStatus' => $this->CostStatusRepository->getCostStatus($id),
         ]);

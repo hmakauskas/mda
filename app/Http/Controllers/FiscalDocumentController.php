@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FiscalDocument;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Repositories\FiscalDocumentRepository;
 
@@ -80,16 +81,27 @@ class FiscalDocumentController extends Controller
             'fiscal_document_number' => 'required|max:255',
         ]);
 
-        FiscalDocument::create([
+        $fileName = null;
+
+        if ($request->file('file')->isValid()) {
+
+            $fileName = md5(uniqid(rand(), true)) . '.' . $request->file('file')->getClientOriginalExtension();           
+            $request->file('file')->move(
+                base_path() . '/public/files/fiscal_documents/', $fileName
+            );
+        }
+
+        $ficalDocument = FiscalDocument::create([
             'fiscal_document_number' => $request->fiscal_document_number,
             'value' => $request->value,
             'fk_supplier_branch' => $request->fk_supplier_branch,
             'fk_currency' => $request->fk_currency,
             'fk_company' => $request->fk_company,
             'fk_fiscal_document_status' => $request->fk_fiscal_document_status,
-        ]);
+            'filename' => $fileName,
+        ]);        
 
-        return redirect('/fiscalDocument');
+        return redirect('/fiscalDocument')->with('message', 'Document added!');;
     }
 
     /**
@@ -117,7 +129,7 @@ class FiscalDocumentController extends Controller
         $companies = \DB::table('companies')->lists('store_name', 'id');
 
         return view('fiscalDocument.create', [
-            'fiscalDocument' => $this->fiscalDocumentRepository->getFiscalDocument($id),
+            'fiscalDocument' => FiscalDocument::find($id),
             'companies' => $companies,
         ]);
     }
@@ -131,6 +143,16 @@ class FiscalDocumentController extends Controller
      */
     public function update(Request $request)
     {
+        $fileName = null;
+
+        if ($request->file('file')->isValid()) {
+
+            $fileName = md5(uniqid(rand(), true)) . '.' . $request->file('file')->getClientOriginalExtension();           
+            $request->file('file')->move(
+                base_path() . '/public/files/fiscal_documents/', $fileName
+            );
+        }
+
         $fiscalDocument = FiscalDocument::find($request->id);
 
         $fiscalDocument->fiscal_document_number = $request->fiscal_document_number;
@@ -139,6 +161,10 @@ class FiscalDocumentController extends Controller
         $fiscalDocument->fk_currency = $request->fk_currency;
         $fiscalDocument->fk_company = $request->fk_company;
         $fiscalDocument->fk_fiscal_document_status = $request->fk_fiscal_document_status;
+        if($fileName){
+          if($fiscalDocument->filename) File::delete(base_path() . '/public/files/fiscal_documents/' . $fiscalDocument->filename);
+          $fiscalDocument->filename = $fileName;  
+        } 
 
         $fiscalDocument->save();
 

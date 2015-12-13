@@ -27,7 +27,7 @@
 
 						<!-- Password -->
 						<div class="form-group">
-							<label for="password" class="col-sm-3 control-label">Password</label>
+							<label for="password" class="col-sm-3 control-label">{{ trans('messages.password') }}</label>
 
 							<div class="col-sm-6">
 								<input type="password" name="password" class="form-control">

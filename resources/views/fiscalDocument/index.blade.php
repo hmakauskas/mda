@@ -58,7 +58,7 @@
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="/laravel5/public/fiscalDocument/{{ $fiscalDocument->id }}/edit">
+                                        <a href="{{ url('fiscalDocument') .'/'. $fiscalDocument->id }}/edit">
                                             {{ $fiscalDocument->fiscal_document_number }}
                                         </a>
                                     </div>
