@@ -18,6 +18,8 @@ class CostRepository
         return Cost::orderBy('created_at', 'desc')
                     ->get();
     }
+
+    
     
 }
 
