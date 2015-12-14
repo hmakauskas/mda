@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SupplierBranch extends Model
 {
-    protected $fillable = ['fiscal_id','country'];
+    protected $fillable = ['supplier_id','fiscal_id','country'];
 
     /**
      * Get the Company that owns the cost.

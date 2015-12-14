@@ -29,7 +29,6 @@ class CreateFiscalDocumentStatus extends Migration
      */
     public function down()
     {
-        //
-        Schema::drop('fiscal_document_statuses');
+        
     }
 }

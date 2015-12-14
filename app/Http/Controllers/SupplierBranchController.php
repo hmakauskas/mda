@@ -80,7 +80,7 @@ class SupplierBranchController extends Controller
             'country' => $request->country,
         ]);        
 
-        return redirect('/supplierbranch')->with('message', 'Company added!');
+        return redirect('/supplierbranch')->with('message', 'Supplier Branch added!');
     }
 
     /**

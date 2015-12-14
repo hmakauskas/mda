@@ -23,16 +23,7 @@
             {!! Form::close() !!}
 
             <div class="panel-body">
-                <table class="table table-striped task-table">
-
-                    <!-- Table Headings -->
-                    <thead>
-                        <th>Company</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                    </thead>
-
+                <table class="table table-striped task-table">                    
                     <!-- Table Body -->
                     <tbody>
                             <tr>

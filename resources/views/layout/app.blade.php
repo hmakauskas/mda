@@ -79,7 +79,7 @@
 		        <li><a href="#">Link</a></li>
 		    	-->
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="<?=url('fiscalDocument')?>">Fiscal Documents</a></li>
 		            <li><a href="<?=url('cost')?>">Costs</a></li>
@@ -88,6 +88,7 @@
 		            <li role="separator" class="divider"></li>
 		            <li><a href="<?=url('company')?>">Companies</a></li>		            
 		            <li><a href="<?=url('supplier')?>">Suppliers</a></li>
+		            <li><a href="<?=url('supplierbranch')?>">Supplier Branches</a></li>
 		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
 		            <li><a href="<?=url('marketingChannel')?>">Marketing Channel</a></li>
 		            <li><a href="<?=url('category')?>">Category</a></li>

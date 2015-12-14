@@ -2,18 +2,13 @@
 
 @section('content')
 
+<center>
+    <h2>Marketing Channels</h2>    
+</center>    
 
 <div class="panel-body">
     <!-- Display Validation Errors -->
     @include('common.errors')
-
-    <center>
-    	<h1>Marketing Channels</h1>
-    
-	</center>
-
-
-
 
 	<!-- Current Tasks -->
     @if (isset($MarketingChannels))
@@ -44,20 +39,14 @@
 
             <div class="panel-body">
                 <table class="table table-striped task-table">
-
-                    <!-- Table Headings -->
-                    <thead>
-                        <th>Marketing Channel</th>
-                        <th>&nbsp;</th>
-                    </thead>
-
-                    <!-- Table Body -->
                     <tbody>
                             <tr>
                                 <td class="table-text">
                                     <div>Channel Name</div>
                                 </td>
-                                 
+                                <td class="table-text">
+                                    <div>&nbsp;</div>
+                                </td>
                             </tr>
                         @foreach ($MarketingChannels as $MarketingChannel)
                             <tr>                                
@@ -65,18 +54,13 @@
                                     <div>
                                         <a href="/marketingChannel/{{ $MarketingChannel->id }}/edit">
                                             {{ $MarketingChannel->channel_name }}
-
                                         </a>
-
-
-
                                     </div>
-
                                 </td>
                                 <td> 
                                 	{!! Form::open(['method'=>'DELETE','url'=>'marketingChannel/'.$MarketingChannel->id,'class'=>'pull-right'])  !!}
 
-                                	    {!! Form::submit('Delete this Channel', array('class' => 'btn btn-warning')) !!}
+                                	    {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
 					                {!! Form::close() !!}
 
                                 </td>

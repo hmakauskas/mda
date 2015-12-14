@@ -24,15 +24,6 @@
 
             <div class="panel-body">
                 <table class="table table-striped task-table">
-
-                    <!-- Table Headings -->
-                    <thead>
-                        <th>Supplier Branch</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
-                    </thead>
-
                     <!-- Table Body -->
                     <tbody>
                             <tr>

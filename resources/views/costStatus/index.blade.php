@@ -31,18 +31,14 @@
 
             <div class="panel-body">
                 <table class="table table-striped task-table">
-
-                    <!-- Table Headings -->
-                    <thead>
-                        <th>Cost Status</th>
-                        <th>&nbsp;</th>
-                    </thead>
-
                     <!-- Table Body -->
                     <tbody>
                             <tr>
                                 <td class="table-text">
                                     <div>Status Name</div>
+                                </td>
+                                <td class="table-text">
+                                    <div></div>
                                 </td>
                                  
                             </tr>

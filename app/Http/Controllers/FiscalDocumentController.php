@@ -111,9 +111,11 @@ class FiscalDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        return view('fiscalDocument.index', [
-            'fiscalDocument' => $this->fiscalDocumentRepository->getFiscalDocument($id),
+    {   
+        $costs = FiscalDocument::find($id)->costs;
+
+        return view('fiscalDocument.costs', [
+            'costs' => $costs,
         ]);
     }
 

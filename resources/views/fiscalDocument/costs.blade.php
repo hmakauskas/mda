@@ -3,14 +3,14 @@
 @section('content')
 
 <!-- Current Tasks -->
-    @if (isset($fiscalDocuments))
+    @if (isset($costs))
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Fiscal Documents
+                Current Costs
             </div>
 
-            {!! Form::open(['method'=>'GET','url'=>'fiscalDocument','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-            <a href="{{ url('fiscalDocument/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
+            {!! Form::open(['method'=>'GET','url'=>'cost','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            <a href="{{ url('cost/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search...">
@@ -29,54 +29,55 @@
 
             <div class="panel-body">
                 <table class="table table-striped task-table">
+
+                    <!-- Table Headings -->
+                    <thead>
+                        <th>Cost</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </thead>
+
                     <!-- Table Body -->
                     <tbody>
                             <tr>
                                 <td class="table-text">
-                                    <div>Document Number</div>
+                                    <div>Short Description</div>
                                 </td>
                                 <td class="table-text">
                                     <div>Value</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Date</div>
+                                    <div>Manamagent Date</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier Branch</div>
-                                </td>
-                                <td class="table-text">
-                                    <div>&nbsp;</div>
+                                    <div>Supplier</div>
                                 </td> 
                             </tr>
-                        @foreach ($fiscalDocuments as $fiscalDocument)
+                        @foreach ($costs as $cost)
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="{{ url('fiscalDocument') .'/'. $fiscalDocument->id }}/edit">
-                                            {{ $fiscalDocument->fiscal_document_number }}
+                                        <a href="/laravel5/public/cost/{{ $cost->id }}/edit">
+                                            {{ $cost->short_description }}
                                         </a>
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $fiscalDocument->value }}</div>
+                                    <div>{{ $cost->value }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $fiscalDocument->created_at }}</div>
+                                    <div>{{ $cost->date_mgr }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $fiscalDocument->supplier_branch_id }}</div>
-                                </td>
-                                <td class="table-text">
-                                    <div><a href="{{ url('fiscalDocument') .'/'. $fiscalDocument->id }}/show" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> Costs</a></div>
-                                </td>
+                                    <div>{{ $cost->supplier_id }}</div>
+                                </td>                                                                        
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-        </div>
-
-        <?php echo $fiscalDocuments->render(); ?>
+        </div>        
 
     @endif
 

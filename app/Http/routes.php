@@ -39,6 +39,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/fiscalDocument', 'fiscalDocumentController@index');
 Route::get('/fiscalDocument/create', 'fiscalDocumentController@create');
 Route::get('/fiscalDocument/{fd}/edit', 'fiscalDocumentController@edit');
+Route::get('/fiscalDocument/{fd}/show', 'fiscalDocumentController@show');
 Route::put('/fiscalDocument', 'fiscalDocumentController@update');
 Route::post('/fiscalDocument', 'fiscalDocumentController@store');
 Route::delete('/fiscalDocument/{fiscalDocument}', 'fiscalDocumentController@destroy');
@@ -59,6 +60,27 @@ Route::delete('/costStatus/{costStatus}', 'CostStatusController@destroy');
 
 Route::get('/joincosts', 'LinkFDtoCostsController@index');
 Route::post('/joincosts', 'LinkFDtoCostsController@store');
+
+Route::get('/company', 'CompanyController@index');
+Route::get('/company/create', 'CompanyController@create');
+Route::get('/company/{fd}/edit', 'CompanyController@edit');
+Route::put('/company', 'CompanyController@update');
+Route::post('/company', 'CompanyController@store');
+Route::delete('/company/{company}', 'CompanyController@destroy');
+
+Route::get('/supplier', 'SupplierController@index');
+Route::get('/supplier/create', 'SupplierController@create');
+Route::get('/supplier/{fd}/edit', 'SupplierController@edit');
+Route::put('/supplier', 'SupplierController@update');
+Route::post('/supplier', 'SupplierController@store');
+Route::delete('/supplier/{supplier}', 'SupplierController@destroy');
+
+Route::get('/supplierbranch', 'SupplierBranchController@index');
+Route::get('/supplierbranch/create', 'SupplierBranchController@create');
+Route::get('/supplierbranch/{fd}/edit', 'SupplierBranchController@edit');
+Route::put('/supplierbranch', 'SupplierBranchController@update');
+Route::post('/supplierbranch', 'SupplierBranchController@store');
+Route::delete('/supplierbranch/{supplier}', 'SupplierBranchController@destroy');
 
 Route::get('/marketingChannel', 'MarketingChannelController@index');
 Route::get('/marketingChannel/create', 'MarketingChannelController@create');
