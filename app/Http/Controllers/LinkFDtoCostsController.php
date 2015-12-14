@@ -37,38 +37,32 @@ class LinkFDtoCostsController extends Controller
     public function index()
     {
 
-        $sbranches = array(
-                1 => 'Oracle Alemanha',
-                2 => 'Google BR',
-                3 => 'Google Alemanha',
-            );
-
-        $channels = array(
-                1 => 'CRM',
-                2 => 'SEM',
-                3 => 'Facebook',
-            );
-
         $companies = \DB::table('companies')->lists('store_name', 'id');
+        $channels = \DB::table('marketing_channels')->lists('channel_name', 'id');
+        $suppliers = \DB::table('suppliers')->lists('supplier_name', 'id');
 
-
-        $supplier_branch_id = \Request::get('supplier_branch_id');
+        $supplier_id = \Request::get('supplier_id');
         $marketing_channel_id = \Request::get('marketing_channel_id');
         $company_id = \Request::get('company_id');
         $from = \Request::get('from').' 00:00:00';
         $to = \Request::get('to').' 23:59:59';
 
-        if($supplier_branch_id && $marketing_channel_id && $company_id){
+        if($supplier_id && $marketing_channel_id && $company_id){
+
+            $supplier_branches = \App\Supplier::find($supplier_id)->supplierBranches;
+
+            foreach ( $supplier_branches as $supplier_branch) {
+                $branch_ids[] = $supplier_branch->id;
+            }
 
             $allFiscalDocuments = FiscalDocument::whereBetween('created_at', [$from, $to])
-                ->Where('supplier_branch_id', $supplier_branch_id)
+                ->WhereIn('supplier_branch_id', $branch_ids)
                 ->Where('company_id', $company_id)
                 ->orderBy('id', 'desc')
                 ->paginate(5); 
 
-
              $allCost = Cost::whereBetween('created_at', [$from, $to])
-                ->Where('supplier_id', 1)
+                ->Where('supplier_id', $supplier_id)
                 ->Where('marketing_channel_id', $marketing_channel_id)
                 ->Where('company_id', $company_id)
                 ->orderBy('id', 'desc')
@@ -84,7 +78,7 @@ class LinkFDtoCostsController extends Controller
         return view('cost.join', [
             'fiscalDocuments' => $allFiscalDocuments,
             'companies' => $companies,
-            'sbranches' => $sbranches,
+            'suppliers' => $suppliers,
             'channels' => $channels,
             'costs' => $allCost,
         ]);

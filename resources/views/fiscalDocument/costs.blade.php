@@ -51,8 +51,8 @@
                                     <div>Manamagent Date</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier</div>
-                                </td> 
+                                    <div>Accounting Date</div>
+                                </td>
                             </tr>
                         @foreach ($costs as $cost)
                             <tr>                                
@@ -70,7 +70,7 @@
                                     <div>{{ $cost->date_mgr }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->supplier_id }}</div>
+                                    <div>{{ $cost->date_acc }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach

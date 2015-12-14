@@ -2,6 +2,10 @@
 
 @section('content')
 
+<center>
+    <h2>Fiscal Documents</h2>    
+</center> 
+
 <!-- Current Tasks -->
     @if (isset($fiscalDocuments))
         <div class="panel panel-default">
@@ -42,9 +46,6 @@
                                     <div>Date</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier Branch</div>
-                                </td>
-                                <td class="table-text">
                                     <div>&nbsp;</div>
                                 </td> 
                             </tr>
@@ -62,9 +63,6 @@
                                 </td>
                                 <td class="table-text">
                                     <div>{{ $fiscalDocument->created_at }}</div>
-                                </td>
-                                <td class="table-text">
-                                    <div>{{ $fiscalDocument->supplier_branch_id }}</div>
                                 </td>
                                 <td class="table-text">
                                     <div><a href="{{ url('fiscalDocument') .'/'. $fiscalDocument->id }}/show" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-zoom-in"></span> Costs</a></div>

@@ -5,12 +5,10 @@
 		<div class="col-sm-offset-2 col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Welcome
+					{{ trans('messages.welcome') }}
 				</div>
 
-				<div class="panel-body">
-					You can store fiscal document & costs here! Please register or login.
-					<br>
+				<div class="panel-body">					
 					<i>Você não sabe o que é sentido figurado? Na escola não te dão aulas de geometria?  Seu Madruga - Chaves </i>
 				</div>
 			</div>

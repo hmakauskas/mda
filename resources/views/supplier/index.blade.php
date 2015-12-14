@@ -2,6 +2,10 @@
 
 @section('content')
 
+<center>
+    <h2>Suppliers</h2>    
+</center> 
+
 <!-- Current Tasks -->
     @if (isset($suppliers))
         <div class="panel panel-default">

@@ -36,6 +36,7 @@ class FiscalDocumentController extends Controller
         $search = \Request::get('search'); //<-- we use global request to get the param of URI
  
         $companies = \DB::table('companies')->lists('store_name', 'id');
+        $status = \DB::table('fiscal_document_statuses')->lists('status_name', 'id');
 
         if($search){
 
@@ -63,9 +64,26 @@ class FiscalDocumentController extends Controller
     public function create()
     {   
         $companies = \DB::table('companies')->lists('store_name', 'id');
+        $currencies = \DB::table('currencies')->lists('currency_code', 'id');
+        $status = \DB::table('fiscal_document_statuses')->lists('status_name', 'id');
+
+        $suppliers = \App\Supplier::orderBy('supplier_name', 'asc')->get();
+
+        foreach ($suppliers as $supplier) {
+
+            $supplier_branches = \App\Supplier::find($supplier->id)->supplierBranches;
+
+            foreach ($supplier_branches as $supplier_branch) {
+
+                $branches[$supplier_branch->id] = $supplier->supplier_name.' ('.$supplier_branch->country.' - '.$supplier_branch->fiscal_id.')';                
+            }
+        } 
 
         return view('fiscalDocument.create', [
             'companies' => $companies,
+            'currencies' => $currencies,
+            'branches' => $branches,
+            'status' => $status,
         ]);
     }
 
@@ -129,10 +147,27 @@ class FiscalDocumentController extends Controller
     {
 
         $companies = \DB::table('companies')->lists('store_name', 'id');
+        $currencies = \DB::table('currencies')->lists('currency_code', 'id');
+        $status = \DB::table('fiscal_document_statuses')->lists('status_name', 'id');
+
+        $suppliers = \App\Supplier::orderBy('supplier_name', 'asc')->get();
+
+        foreach ($suppliers as $supplier) {
+
+            $supplier_branches = \App\Supplier::find($supplier->id)->supplierBranches;
+
+            foreach ($supplier_branches as $supplier_branch) {
+
+                $branches[$supplier_branch->id] = $supplier->supplier_name.' ('.$supplier_branch->country.' - '.$supplier_branch->fiscal_id.')';                
+            }
+        }
 
         return view('fiscalDocument.create', [
             'fiscalDocument' => FiscalDocument::find($id),
             'companies' => $companies,
+            'currencies' => $currencies,
+            'branches' => $branches,
+            'status' => $status,
         ]);
     }
 

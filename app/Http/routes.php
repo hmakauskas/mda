@@ -103,3 +103,9 @@ Route::put('/fiscalDocumentStatus', 'FiscalDocumentStatusController@update');
 Route::post('/fiscalDocumentStatus', 'FiscalDocumentStatusController@store');
 Route::delete('/fiscalDocumentStatus/{fiscalDocumentStatus}', 'FiscalDocumentStatusController@destroy');
 
+Route::get('/currency', 'CurrencyController@index');
+Route::get('/currency/create', 'CurrencyController@create');
+Route::get('/currency/{fd}/edit', 'CurrencyController@edit');
+Route::put('/currency', 'CurrencyController@update');
+Route::post('/currency', 'CurrencyController@store');
+Route::delete('/currency/{currency}', 'CurrencyController@destroy');

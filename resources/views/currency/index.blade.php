@@ -3,18 +3,18 @@
 @section('content')
 
 <center>
-    <h2>Companies</h2>    
+    <h2>Currencies</h2>    
 </center> 
 
 <!-- Current Tasks -->
-    @if (isset($companies))
+    @if (isset($currencies))
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Companies
+                Current Currencies
             </div>
 
-            {!! Form::open(['method'=>'GET','url'=>'company','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
-            <a href="{{ url('company/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
+            {!! Form::open(['method'=>'GET','url'=>'currency','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
+            <a href="{{ url('currency/create') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add</a>
              
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" name="search" placeholder="Search...">
@@ -32,35 +32,35 @@
                     <tbody>
                             <tr>
                                 <td class="table-text">
-                                    <div>Store Name</div>
+                                    <div>Code</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Billing Country</div>
+                                    <div>Symbol</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Legal Entity name</div>
+                                    <div>Name</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Legal Entity tax register</div>
+                                    <div>Country</div>
                                 </td> 
                             </tr>
-                        @foreach ($companies as $company)
+                        @foreach ($currencies as $currency)
                             <tr>                                
                                 <td class="table-text">
                                     <div>
-                                        <a href="{{ url('company') .'/'. $company->id }}/edit">
-                                            {{ $company->store_name }}
+                                        <a href="{{ url('currency') .'/'. $currency->id }}/edit">
+                                            {{ $currency->currency_code }}
                                         </a>
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $company->billing_country }}</div>
+                                    <div>{{ $currency->currency_symbol }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $company->legal_entity_name }}</div>
+                                    <div>{{ $currency->currency_name }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $company->legal_entity_tax_register }}</div>
+                                    <div>{{ $currency->country }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <?php echo $companies->render(); ?>
+        <?php echo $currencies->render(); ?>
 
     @endif
 

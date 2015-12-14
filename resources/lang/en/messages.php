@@ -2,7 +2,7 @@
 
 return [
 
-    'welcome' => 'You can store fiscal document & costs here! Please register or login.',
+    'welcome' => 'Welcome',
 	'name' => 'Name',
 	'password' => 'Password',
 	'confirm_password' => 'Confirm Password',	

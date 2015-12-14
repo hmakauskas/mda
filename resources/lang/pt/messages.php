@@ -2,7 +2,7 @@
 
 return [
 	
-	'welcome' => 'Bem vindo! You can store fiscal document & costs here! Please register or login.',
+	'welcome' => 'Bem vindo',
 	'name' => 'Name',
 	'password' => 'Password',
 	'confirm_password' => 'Confirm Password',	

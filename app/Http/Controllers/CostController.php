@@ -43,7 +43,6 @@ class CostController extends Controller
             $allCosts = Cost::orderBy('id', 'desc')->paginate(5);    
         }
 
-
         return view('cost.index', [
             'costs' => $allCosts,
             'companies' => $companies,
@@ -58,17 +57,20 @@ class CostController extends Controller
      */
     public function create()
     {
-        $currencies = array(
-                1 => 'BRL',
-                2 => 'USD',
-                3 => 'ARS',
-            );
-
+        $currencies = \DB::table('currencies')->lists('currency_code', 'id');
         $companies = \DB::table('companies')->lists('store_name', 'id');
+        $suppliers = \DB::table('suppliers')->lists('supplier_name', 'id');
+        $marketing_channels = \DB::table('marketing_channels')->lists('channel_name', 'id');
+        $categories = \DB::table('categories')->lists('category_name', 'id');
+        $status = \DB::table('cost_statuses')->lists('status_name', 'id');
 
         return view('cost.create', [
             'currencies' => $currencies,
             'companies' => $companies,
+            'suppliers' => $suppliers,
+            'marketing_channels' => $marketing_channels,
+            'categories' => $categories,
+            'status' => $status,
         ]);
     }
 
@@ -122,18 +124,21 @@ class CostController extends Controller
      */
     public function edit($id)
     {
+        $currencies = \DB::table('currencies')->lists('currency_code', 'id');
         $companies = \DB::table('companies')->lists('store_name', 'id');
-
-        $currencies = array(
-                1 => 'BRL',
-                2 => 'USD',
-                3 => 'ARS',
-            );
+        $suppliers = \DB::table('suppliers')->lists('supplier_name', 'id');
+        $marketing_channels = \DB::table('marketing_channels')->lists('channel_name', 'id');
+        $categories = \DB::table('categories')->lists('category_name', 'id');
+        $status = \DB::table('cost_statuses')->lists('status_name', 'id');
 
         return view('cost.create', [
             'cost' => Cost::find($id),
-            'companies' => $companies,
             'currencies' => $currencies,
+            'companies' => $companies,
+            'suppliers' => $suppliers,
+            'marketing_channels' => $marketing_channels,
+            'categories' => $categories,
+            'status' => $status,
         ]);
     }
 

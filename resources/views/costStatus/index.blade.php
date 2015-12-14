@@ -2,6 +2,9 @@
 
 @section('content')
 
+<center>
+    <h2>Cost Status</h2>    
+</center> 
 
 <div class="panel-body">
     <!-- Display Validation Errors -->

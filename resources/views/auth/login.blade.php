@@ -44,11 +44,13 @@
 						</div>
 					</form>
 
+					<!--
 					<form action="/loginGoogle" method="POST" class="form-horizontal">
-					<button type="submit" class="btn btn-default">
-									<i class="fa fa-btn fa-sign-in"></i>Login with Google
-					</button>
+						<button type="submit" class="btn btn-default">
+							<i class="fa fa-btn fa-sign-in"></i>Login with Google
+						</button>
 					</form>
+					-->
 				</div>
 			</div>
 		</div>

@@ -88,10 +88,10 @@
 		            <li role="separator" class="divider"></li>
 		            <li><a href="<?=url('company')?>">Companies</a></li>		            
 		            <li><a href="<?=url('supplier')?>">Suppliers</a></li>
-		            <li><a href="<?=url('supplierbranch')?>">Supplier Branches</a></li>
-		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
+		            <li><a href="<?=url('supplierbranch')?>">Supplier Branches</a></li>		            
 		            <li><a href="<?=url('marketingChannel')?>">Marketing Channel</a></li>
 		            <li><a href="<?=url('category')?>">Category</a></li>
+		            <li><a href="<?=url('costStatus')?>">Cost status</a></li>
 		            <li><a href="<?=url('fiscalDocumentStatus')?>">Fiscal Document Status</a></li>
 		          </ul>
 		        </li>

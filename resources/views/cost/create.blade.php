@@ -82,7 +82,14 @@
             <label for="task-name" class="col-sm-3 control-label">Supplier</label>
 
             <div class="col-sm-6">
-                <input type="text" name="supplier_id" value="{{ $cost->supplier_id or '' }}" id="cost-supplier_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'supplier_id', 
+                        (['0' => 'Supplier'] + $suppliers), 
+                        (isset($cost->supplier_id) ? $cost->supplier_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>        
 
@@ -104,7 +111,14 @@
             <label for="task-name" class="col-sm-3 control-label">Marketing Channel</label>
 
             <div class="col-sm-6">
-                <input type="text" name="marketing_channel_id" value="{{ $cost->marketing_channel_id or '' }}" id="cost-marketing_channel_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'marketing_channel_id', 
+                        (['0' => 'Channels'] + $marketing_channels), 
+                        (isset($cost->marketing_channel_id) ? $cost->marketing_channel_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 
@@ -112,7 +126,14 @@
             <label for="task-name" class="col-sm-3 control-label">Category</label>
 
             <div class="col-sm-6">
-                <input type="text" name="category_id" value="{{ $cost->category_id or '' }}" id="cost-category_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'category_id', 
+                        (['0' => 'Category'] + $categories), 
+                        (isset($cost->category_id) ? $cost->category_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 
@@ -120,7 +141,14 @@
             <label for="task-name" class="col-sm-3 control-label">Status</label>
 
             <div class="col-sm-6">
-                <input type="text" name="cost_status_id" value="{{ $cost->cost_status_id or '' }}" id="cost-cost_status_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'cost_status_id', 
+                        (['0' => 'Status'] + $status), 
+                        (isset($cost->cost_status_id) ? $cost->cost_status_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 

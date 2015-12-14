@@ -20,8 +20,16 @@ class FiscalDocument extends Model
     /**
      * Get the Supplier Branch that owns the cost.
      */
-    public function supplierBranches()
+    public function supplierBranch()
     {
         return $this->belongsTo(SupplierBranch::class);
     }  
+
+    /**
+     * Get the Currency that owns the cost.
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }

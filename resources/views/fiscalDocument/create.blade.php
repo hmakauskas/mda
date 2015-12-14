@@ -42,10 +42,17 @@
         </div>
 
         <div class="form-group">
-            <label for="task-name" class="col-sm-3 control-label">Branch</label>
+            <label for="task-name" class="col-sm-3 control-label">Supplier Branch</label>
 
             <div class="col-sm-6">
-                <input type="text" name="supplier_branch_id" value="{{ $fiscalDocument->supplier_branch_id or '' }}" id="fiscalDocument-supplier_branch_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'supplier_branch_id', 
+                        (['0' => 'Select a Branch'] + $branches), 
+                        (isset($fiscalDocument->supplier_branch_id) ? $fiscalDocument->supplier_branch_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 
@@ -53,7 +60,14 @@
             <label for="task-name" class="col-sm-3 control-label">Currency</label>
 
             <div class="col-sm-6">
-                <input type="text" name="currency_id" value="{{ $fiscalDocument->currency_id or '' }}" id="fiscalDocument-currency_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'currency_id', 
+                        (['0' => 'Select a Currency'] + $currencies), 
+                        (isset($fiscalDocument->currency_id) ? $fiscalDocument->currency_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 
@@ -75,7 +89,14 @@
             <label for="task-name" class="col-sm-3 control-label">Status</label>
 
             <div class="col-sm-6">
-                <input type="text" name="fiscal_document_status_id" value="{{ $fiscalDocument->fiscal_document_status_id or '' }}" id="fiscalDocument-fiscal_document_status_id" class="form-control">
+                {!! 
+                    Form::select(   
+                        'fiscal_document_status_id', 
+                        (['0' => 'Select a Status'] + $status), 
+                        (isset($fiscalDocument->fiscal_document_status_id) ? $fiscalDocument->fiscal_document_status_id : null), 
+                        ['class' => 'form-control']
+                    ) 
+                !!}
             </div>
         </div>
 

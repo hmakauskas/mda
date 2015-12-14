@@ -2,6 +2,10 @@
 
 @section('content')
 
+<center>
+    <h2>Costs</h2>    
+</center> 
+
 <!-- Current Tasks -->
     @if (isset($costs))
         <div class="panel panel-default">
@@ -42,7 +46,7 @@
                                     <div>Manamagent Date</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier</div>
+                                    <div>Accounting Date</div>
                                 </td> 
                             </tr>
                         @foreach ($costs as $cost)
@@ -61,7 +65,7 @@
                                     <div>{{ $cost->date_mgr }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->supplier_id }}</div>
+                                    <div>{{ $cost->date_acc }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach

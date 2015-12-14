@@ -14,8 +14,8 @@
                 {!! Form::open(['method'=>'GET','url'=>'joincosts','class'=>'navbar-form navbar-left','role'=>'search'])  !!}
                     {!! 
                         Form::select(   
-                            'supplier_branch_id', 
-                            (['0' => 'Select a Supplier Branch'] + $sbranches), 
+                            'supplier_id', 
+                            (['0' => 'Select a Supplier'] + $suppliers), 
                             null,  
                             ['class' => 'form-control']
                         ) 
@@ -58,8 +58,9 @@
         {!! Form::open(['method'=>'POST','url'=>'joincosts'])  !!}
 
         <div class="panel panel-default">
-          <div class="panel-heading"><span class="label label-primary">2</span> <b> - Select the Fiscal Document</b></div>
+          <div class="panel-heading"><span class="label label-primary">2</span> <b> - Select a Fiscal Document</b></div>
           <div class="panel-body">
+            <!--
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" name="search" id="datepicker" placeholder="Search by Date...">
 
@@ -71,6 +72,7 @@
                 <input type="text" class="form-control" name="search" placeholder="Search by document number...">
             </div>
             <br />
+            -->
             <table class="table table-striped task-table">
                 <!-- Table Body -->
                 <tbody>
@@ -86,9 +88,6 @@
                             </td>
                             <td class="table-text">
                                 <div>Date</div>
-                            </td>
-                            <td class="table-text">
-                                <div>Supplier Branch</div>
                             </td> 
                         </tr>
                     @foreach ($fiscalDocuments as $fiscalDocument)
@@ -108,9 +107,6 @@
                             </td>
                             <td class="table-text">
                                 <div>{{ $fiscalDocument->created_at }}</div>
-                            </td>
-                            <td class="table-text">
-                                <div>{{ $fiscalDocument->supplier_branch_id }}</div>
                             </td>                                                                        
                         </tr>
                     @endforeach
@@ -138,7 +134,7 @@
                                     <div>Manamagent Date</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>Supplier</div>
+                                    <div>Accounting Date</div>
                                 </td> 
                             </tr>
                         @foreach ($costs as $cost)
@@ -160,7 +156,7 @@
                                     <div>{{ $cost->date_mgr }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $cost->supplier_id }}</div>
+                                    <div>{{ $cost->date_acc }}</div>
                                 </td>                                                                        
                             </tr>
                         @endforeach
